@@ -41,6 +41,7 @@ class ViewController: UIViewController {
             NSLayoutConstraint(item: orderButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -50),
             NSLayoutConstraint(item: orderButton, attribute:.centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
         ])
+        
 //        orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110)
 //        orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
 ////        orderButton.centerXAnchor.constraint(equalTo: view.leadingAnchor, constant: 215).isActive = true
