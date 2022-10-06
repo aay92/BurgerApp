@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    private let sections = MockData.shared.pageData
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,13 +71,42 @@ extension ViewController: UICollectionViewDelegate {
 
 //MARK: - UICollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return sections[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return "UICollectionViewCell"
+        
+        switch sections[indexPath.section] {
+        case .sales(let sale):
+            guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoriesCollectionViewCell", for: indexPath) as? SaleCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.configureCell(name: sale[indexPath.row].images)
+            return cell
+            
+        case .category( let category):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.configureCell(categoryName: category[indexPath.row].title, imageName: category[indexPath.row].images)
+            return cell
+            
+        case .example( let example):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonCollectionViewCell", for: indexPath) as? ExampleCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.configureCell(imageName: example[indexPath.row].images)
+            return cell
+            
+        }
     }
-    
-    
 }
