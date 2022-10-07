@@ -11,6 +11,7 @@ import UIKit
 class SaleCollectionViewCell: UICollectionViewCell {
     private let saleImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = .gray
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

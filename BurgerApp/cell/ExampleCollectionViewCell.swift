@@ -13,6 +13,7 @@ class ExampleCollectionViewCell: UICollectionViewCell {
     private let burgerNameView: UIImageView = {
         let burgerName = UIImageView()
         burgerName.contentMode = .scaleAspectFit
+        burgerName.backgroundColor = .green
         burgerName.image = UIImage(named: "burger1")
         burgerName.translatesAutoresizingMaskIntoConstraints = false
         return burgerName

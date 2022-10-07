@@ -47,8 +47,10 @@ class ViewController: UIViewController {
         
         collectionView.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: "StoriesCollectionViewCell")
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "PopularCollectionViewCell")
-        collectionView.register(ExampleCollectionViewCell.self, forCellWithReuseIdentifier: "PopularCollectionViewCell")
+        collectionView.register(ExampleCollectionViewCell.self, forCellWithReuseIdentifier: "ComingSoonCollectionViewCell")
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
+        
+        collectionView.collectionViewLayout = creatLayout()
     }
     
     private func setDelegates(){
@@ -68,11 +70,71 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -10)
-            //            NSLayoutConstraint(item: orderButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60),
-            //            NSLayoutConstraint(item: orderButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 370),
-            //            NSLayoutConstraint(item: orderButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -50),
-            //            NSLayoutConstraint(item: orderButton, attribute:.centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
         ])
+    }
+}
+//MARK: - Create Layout
+extension ViewController {
+    private func creatLayout()-> UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout {[weak self] sectionsIndex, _ in
+            guard let self = self else { return nil }
+            let section = self.sections[sectionsIndex]
+            switch section {
+
+            case .sales(_):
+                return self.createSaleSection()
+            case .category(_):
+                return self.createCategorySection()
+            case .example(_):
+                return self.createExampleSection()
+            }
+        }
+    }
+    
+    private func createLayoutSection(group: NSCollectionLayoutGroup, behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
+                                     interGroupSpacing: CGFloat,
+                                     supplementaryItems: [NSCollectionLayoutBoundarySupplementaryItem],
+                                     contentInsets: Bool)-> NSCollectionLayoutSection {
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = behavior
+        section.interGroupSpacing = interGroupSpacing
+        section.boundarySupplementaryItems = supplementaryItems
+        section.supplementariesFollowContentInsets = contentInsets
+        return section
+        
+    }
+    
+    private func createSaleSection()->NSCollectionLayoutSection{
+//        размеры секции, группы и айтема
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1)))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalWidth(0.2)), subitems: [item])
+        let section = createLayoutSection(group: group, behavior: .groupPaging, interGroupSpacing: 5, supplementaryItems: [], contentInsets: false)
+        
+        section.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 0)
+        return section
+    }
+    
+    private func createCategorySection()->NSCollectionLayoutSection{
+//        размеры секции, группы и айтема
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalWidth(1)))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.1)), subitems: [item])
+        group.interItemSpacing = .flexible(10)
+        let section = createLayoutSection(group: group, behavior: .none, interGroupSpacing: 10, supplementaryItems: [supplementaryHeaderItem()], contentInsets: false)
+        section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        return section
+    }
+    
+    private func createExampleSection()->NSCollectionLayoutSection{
+//        размеры секции, группы и айтема
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1)))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalWidth(0.45)), subitems: [item])
+        let section = createLayoutSection(group: group, behavior: .continuous , interGroupSpacing: 10, supplementaryItems: [supplementaryHeaderItem()], contentInsets: false)
+        section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        return section
+    }
+    
+    private func supplementaryHeaderItem()->NSCollectionLayoutBoundarySupplementaryItem {
+        .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }
 
@@ -110,6 +172,7 @@ extension ViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.configureCell(categoryName: category[indexPath.row].title, imageName: category[indexPath.row].images)
+
             return cell
             
         case .example( let example):
