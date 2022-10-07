@@ -33,6 +33,10 @@ class SaleCollectionViewCell: UICollectionViewCell {
     func configureCell(name: String){
         saleImageView.image = UIImage(named: name)
     }
+    func configureCellFake(name: String){
+        saleImageView.image = UIImage(systemName: "person")
+        print(name)
+    }
      func setConstraints(){
          NSLayoutConstraint.activate([
             saleImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),

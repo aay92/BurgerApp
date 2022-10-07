@@ -17,6 +17,7 @@
 		5BAB782728EF5D4200EE3B47 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB782628EF5D4200EE3B47 /* SaleCollectionViewCell.swift */; };
 		5BAB782928EF607500EE3B47 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB782828EF607500EE3B47 /* CategoryCollectionViewCell.swift */; };
 		5BAB782B28EF659700EE3B47 /* ExampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB782A28EF659700EE3B47 /* ExampleCollectionViewCell.swift */; };
+		5BAB782D28EFFD3500EE3B47 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB782C28EFFD3500EE3B47 /* HeaderSupplementaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		5BAB782628EF5D4200EE3B47 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BAB782828EF607500EE3B47 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BAB782A28EF659700EE3B47 /* ExampleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewCell.swift; sourceTree = "<group>"; };
+		5BAB782C28EFFD3500EE3B47 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				5BAB782628EF5D4200EE3B47 /* SaleCollectionViewCell.swift */,
 				5BAB782828EF607500EE3B47 /* CategoryCollectionViewCell.swift */,
 				5BAB782A28EF659700EE3B47 /* ExampleCollectionViewCell.swift */,
+				5BAB782C28EFFD3500EE3B47 /* HeaderSupplementaryView.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				5BAB781028EDF39500EE3B47 /* ViewController.swift in Sources */,
 				5BAB780C28EDF39500EE3B47 /* AppDelegate.swift in Sources */,
 				5BAB782428EE1C6400EE3B47 /* MockData.swift in Sources */,
+				5BAB782D28EFFD3500EE3B47 /* HeaderSupplementaryView.swift in Sources */,
 				5BAB782B28EF659700EE3B47 /* ExampleCollectionViewCell.swift in Sources */,
 				5BAB782928EF607500EE3B47 /* CategoryCollectionViewCell.swift in Sources */,
 				5BAB782728EF5D4200EE3B47 /* SaleCollectionViewCell.swift in Sources */,

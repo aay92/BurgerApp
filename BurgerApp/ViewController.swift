@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setConstrane()
+        setDelegates()
     }
     
     func setupViews(){
@@ -42,6 +43,12 @@ class ViewController: UIViewController {
         title = "BurgerMarket"
         
         view.addSubview(orderButton)
+        view.addSubview(collectionView)
+        
+        collectionView.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: "StoriesCollectionViewCell")
+        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "PopularCollectionViewCell")
+        collectionView.register(ExampleCollectionViewCell.self, forCellWithReuseIdentifier: "PopularCollectionViewCell")
+        collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
     }
     
     private func setDelegates(){
@@ -55,7 +62,12 @@ class ViewController: UIViewController {
             orderButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
             orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            orderButton.heightAnchor.constraint(equalToConstant: 60)
+            orderButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -10)
             //            NSLayoutConstraint(item: orderButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60),
             //            NSLayoutConstraint(item: orderButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 370),
             //            NSLayoutConstraint(item: orderButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -50),
@@ -88,7 +100,8 @@ extension ViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(name: sale[indexPath.row].images)
+//            cell.configureCell(name: sale[indexPath.row].images)
+            cell.configureCellFake(name: sale[indexPath.row].title)
             return cell
             
         case .category( let category):
@@ -107,6 +120,17 @@ extension ViewController: UICollectionViewDataSource {
             cell.configureCell(imageName: example[indexPath.row].images)
             return cell
             
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderSupplementaryView
+            header.configureHeader(categoryName: sections[indexPath.section].title)
+            return header
+        default:
+            return UICollectionReusableView()
         }
     }
 }
