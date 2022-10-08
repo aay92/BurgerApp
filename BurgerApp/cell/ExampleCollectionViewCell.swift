@@ -10,6 +10,8 @@ import UIKit
 
 class ExampleCollectionViewCell: UICollectionViewCell {
     
+    static let indicator = "ComingSoonCollectionViewCell"
+
     private let burgerNameView: UIImageView = {
         let burgerName = UIImageView()
         burgerName.contentMode = .scaleAspectFit

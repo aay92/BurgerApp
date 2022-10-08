@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class SaleCollectionViewCell: UICollectionViewCell {
+    
+    static let indicator = "StoriesCollectionViewCell"
     private let saleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
@@ -35,7 +37,7 @@ class SaleCollectionViewCell: UICollectionViewCell {
         saleImageView.image = UIImage(named: name)
     }
     func configureCellFake(name: String){
-        saleImageView.image = UIImage(systemName: "person")
+        saleImageView.image = UIImage(systemName: name)
         print(name)
     }
      func setConstraints(){

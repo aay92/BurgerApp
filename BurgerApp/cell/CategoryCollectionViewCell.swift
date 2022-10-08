@@ -9,6 +9,9 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
+    static let indicator = "PopularCollectionViewCell"
+
+    
     private let categoryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
