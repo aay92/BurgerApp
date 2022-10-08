@@ -115,7 +115,7 @@ extension ViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2)), subitems: [item])
         let section = createLayoutSection(group: group,
                                           behavior: .groupPaging,
-                                          interGroupSpacing: 5,
+                                          interGroupSpacing: 15,
                                           supplementaryItems: [],
                                           contentInsets: false)
         
@@ -126,7 +126,7 @@ extension ViewController {
     private func createCategorySection()-> NSCollectionLayoutSection{
 //        размеры секции, группы и айтема
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2)), subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.15)), subitems: [item])
         group.interItemSpacing = .flexible(10)
         let section = createLayoutSection(group: group,
                                           behavior: .none,
@@ -146,7 +146,7 @@ extension ViewController {
                                           interGroupSpacing: 10,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)
-        section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        section.contentInsets = .init(top: -30, leading: 10, bottom: 0, trailing: 10)
         return section
     }
     
@@ -182,8 +182,7 @@ extension ViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-//            cell.configureCell(name: sale[indexPath.row].images)
-            cell.configureCellFake(name: sale[indexPath.row].title)
+            cell.configureCell(name: sale[indexPath.row].images)
             return cell
             
         case .category( let category):

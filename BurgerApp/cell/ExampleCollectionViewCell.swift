@@ -15,9 +15,10 @@ class ExampleCollectionViewCell: UICollectionViewCell {
     private let burgerNameView: UIImageView = {
         let burgerName = UIImageView()
         burgerName.contentMode = .scaleAspectFit
-        burgerName.backgroundColor = .green
+        burgerName.backgroundColor = .white
         burgerName.image = UIImage(named: "burger1")
         burgerName.translatesAutoresizingMaskIntoConstraints = false
+        burgerName.layer.cornerRadius = burgerName.bounds.size.height / 2
         return burgerName
     }()
     
@@ -33,7 +34,7 @@ class ExampleCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Egg Top Burger"
         label.textAlignment = .center
-        label.font = UIFont(name: "Arial", size: 16)
+        label.font = UIFont(name: "Arial", size: 17)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -63,10 +64,11 @@ class ExampleCollectionViewCell: UICollectionViewCell {
         clipsToBounds = true
         layer.cornerRadius = 10
         
-        addSubview(burgerNameView)
         addSubview(backgroundTitleView)
+        addSubview(burgerNameView)
         addSubview(nameLabel)
         addSubview(priceLabel)
+
     }
     
     func configureCell(imageName: String){
@@ -75,21 +77,27 @@ class ExampleCollectionViewCell: UICollectionViewCell {
     
     func setConstraints(){
         NSLayoutConstraint.activate([
-            burgerNameView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            burgerNameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            burgerNameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            burgerNameView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+           
+//            nameLabel.centerYAnchor.constraint(equalTo: backgroundTitleView.centerYAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: backgroundTitleView.leadingAnchor, constant: 10),
+            nameLabel.bottomAnchor.constraint(equalTo: backgroundTitleView.bottomAnchor, constant: -18),
+            
+//            priceLabel.centerXAnchor.constraint(equalTo: backgroundTitleView.centerXAnchor),
+            priceLabel.trailingAnchor.constraint(equalTo: backgroundTitleView.trailingAnchor, constant: -10),
+            priceLabel.bottomAnchor.constraint(equalTo: backgroundTitleView.bottomAnchor, constant: -18),
+
             
             backgroundTitleView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             backgroundTitleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             backgroundTitleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             backgroundTitleView.heightAnchor.constraint(equalTo: heightAnchor, constant: 0.1),
             
-            nameLabel.centerYAnchor.constraint(equalTo: backgroundTitleView.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: backgroundTitleView.leadingAnchor, constant: 10),
+            burgerNameView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            burgerNameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            burgerNameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            burgerNameView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
             
-            priceLabel.centerYAnchor.constraint(equalTo: backgroundTitleView.centerYAnchor),
-            priceLabel.trailingAnchor.constraint(equalTo: backgroundTitleView.trailingAnchor, constant: -10)
+           
         ])
     }
 }

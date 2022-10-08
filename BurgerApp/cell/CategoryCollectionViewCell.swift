@@ -15,7 +15,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private let categoryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .none
         imageView.image = UIImage(named: "categoryBurger")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

@@ -28,7 +28,7 @@ struct MockData {
     private let example: ListSection = {
         .example([.init(title: "", images: "burger1"),
                 .init(title: "", images: "burger2"),
-                .init(title: "", images: "burger2")])
+                .init(title: "", images: "burger3")])
     }()
     
     var pageData: [ListSection] {

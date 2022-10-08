@@ -13,8 +13,8 @@ class SaleCollectionViewCell: UICollectionViewCell {
     static let indicator = "StoriesCollectionViewCell"
     private let saleImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .gray
-        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .none
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
